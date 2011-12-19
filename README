@@ -1,0 +1,6 @@
+Log is a plugin that logs block changes. It's aim is to be a feature-filled but lightweight alternative to BigBrother.
+Log is designed for small-medium sized servers where the main focus is identifying and banning the griefer, rather than fixing the griefed structure (backups should be used for that).
+Compatible with 617 onwards. Latest build officially tested on 1240. Reported working on 1492.
+
+For more information, go to:
+http://dev.bukkit.org/server-mods/log/
