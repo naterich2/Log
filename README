@@ -2,5 +2,22 @@ Log is a plugin that logs block changes. It's aim is to be a feature-filled but 
 Log is designed for small-medium sized servers where the main focus is identifying and banning the griefer, rather than fixing the griefed structure (backups should be used for that).
 Compatible with 617 onwards. Latest build officially tested on 1240. Reported working on 1492.
 
+/
+    README - This file
+    src/
+        plugin.yml - The plugin description file
+        org/
+            pokepal101/
+                log/
+                    pokepal101/
+                        log/
+                            BufferedDataFileWriter.java - The buffered file writer implementation for log.db2
+                            CBlockListener.java - The block listener for destroy/place events
+                            CPlayerListener.java - The player listener for stick/bone rightclicking
+                            CachedDataFileReader.txt - Not implemented
+                            LogPlugin.java - The main plugin class
+                            Modification.java - A class representing a block modification
+                            Position.java - A class representing a position in the Minecraft world
+
 For more information, go to:
 http://dev.bukkit.org/server-mods/log/
