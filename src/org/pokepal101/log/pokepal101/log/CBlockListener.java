@@ -22,38 +22,26 @@ public class CBlockListener extends BlockListener
     public void onBlockPlace (BlockPlaceEvent event)
     {
         Block b = event.getBlockPlaced();
-        Position p = new Position(b.getX(), b.getY(), b.getZ());
-//        ArrayList<Modification> mod = plugin.get(p);
         Calendar c = Calendar.getInstance();
-        String date = c.get(Calendar.DAY_OF_MONTH) + "/";
-        date += (c.get(Calendar.MONTH) + 1) + "/";
-        date += c.get(Calendar.YEAR) + " ";
-        date += c.get(Calendar.HOUR_OF_DAY) + ":";
-        date += c.get(Calendar.MINUTE);
         String idData = b.getTypeId() + "";
         if (b.getData() != 0) idData += ":" + b.getData();
-        Modification m = new Modification(event.getPlayer().getName(), true, idData, date);
-//        mod.add(m);
-//        plugin.set(p, mod);
-		plugin.bw.write(p.getData() + ";" + m.getData());
+        Modification m = new Modification(event.getPlayer().getName(), 0, idData,
+                c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.MONTH), c.get(Calendar.YEAR),
+                c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), c.get(Calendar.SECOND),
+                b.getX(), b.getY(), b.getZ());
+	plugin.bw.write(m);
     }
 
     public void onBlockBreak (BlockBreakEvent event)
     {
         Block b = event.getBlock();
-        Position p = new Position(b.getX(), b.getY(), b.getZ());
-//        ArrayList<Modification> mod = plugin.get(p);
         Calendar c = Calendar.getInstance();
-        String date = c.get(Calendar.DAY_OF_MONTH) + "/";
-        date += (c.get(Calendar.MONTH) + 1) + "/";
-        date += c.get(Calendar.YEAR) + " ";
-        date += c.get(Calendar.HOUR_OF_DAY) + ":";
-        date += c.get(Calendar.MINUTE);
         String idData = b.getTypeId() + "";
         if (b.getData() != 0) idData += ":" + b.getData();
-        Modification m = new Modification(event.getPlayer().getName(), false, idData, date);
-//        mod.add(m);
-//        plugin.set(p, mod);
-		plugin.bw.write(p.getData() + ";" + m.getData());
+        Modification m = new Modification(event.getPlayer().getName(), 1, idData,
+                c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.MONTH), c.get(Calendar.YEAR),
+                c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), c.get(Calendar.SECOND),
+                b.getX(), b.getY(), b.getZ());
+	plugin.bw.write(m);
     }
 }
