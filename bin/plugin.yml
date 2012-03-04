@@ -1,0 +1,33 @@
+name: Log
+main: org.pokepal101.log.pokepal101.log.LogPlugin
+version: 0.8
+author: pokepal101
+description: >
+             Tool for logging blocks.
+permissions:
+    log.*:
+        description: Gives access to all moderator level Log tools
+        children:
+            log.stick: true
+            log.bone: true
+    log.stick:
+        description: Allows you to look up a solid block
+        default: op
+    log.bone:
+        description: Allows you to look up an air block
+        default: op
+    log.admin.*:
+        description: Gives access to all administrator level Log tools
+        children:
+            log.admin.purge: true
+            log.admin.clean: true
+    log.admin.purge:
+        description: Allows you to erase the Log database
+        default: op
+    log.admin.clean:
+        description: Allows you to delete Log entries older than a certain amount of time
+        default: op
+commands:
+    log:
+        description: Accesses log commands
+        usage: /<command>

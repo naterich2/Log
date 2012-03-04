@@ -4,14 +4,8 @@ import java.io.*;
 import java.util.*;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.Server;
 import org.bukkit.command.*;
-import org.bukkit.event.Event.Priority;
-import org.bukkit.event.Event;
 import org.bukkit.material.*;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.PluginLoader;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
 
@@ -62,9 +56,8 @@ public class LogPlugin extends JavaPlugin {
     {
         System.out.println("Log version " + getDescription().getVersion() + ": Loaded.");
         PluginManager pm = getServer().getPluginManager();
-        pm.registerEvent(Event.Type.PLAYER_INTERACT, playerListener, Priority.Normal, this);
-        pm.registerEvent(Event.Type.BLOCK_PLACE, blockListener, Priority.Normal, this);
-        pm.registerEvent(Event.Type.BLOCK_BREAK, blockListener, Priority.Normal, this);
+		pm.registerEvents(blockListener, this);
+		pm.registerEvents(playerListener, this);
         System.out.println("Log version " + getDescription().getVersion() + ": Events initialised successfully.");
 
         try
@@ -73,7 +66,8 @@ public class LogPlugin extends JavaPlugin {
             {
                 ObjectInputStream input = new ObjectInputStream(new FileInputStream("logdata.db"));
 		BufferedDataFileWriter dw = new BufferedDataFileWriter(new File("logdata.db2"));
-                HashMap<Position, ArrayList<Modification>> mod = (HashMap<Position, ArrayList<Modification>>) input.readObject();
+                @SuppressWarnings("unchecked")
+				HashMap<Position, ArrayList<Modification>> mod = (HashMap<Position, ArrayList<Modification>>) input.readObject();
                 input.close();
 		Iterator<Position> keySet = mod.keySet().iterator();
 		while (keySet.hasNext())
@@ -224,7 +218,8 @@ try
                             int hour = Integer.parseInt(tok4.nextToken());
                             int min = Integer.parseInt(tok4.nextToken());
 
-                            Date thatdate = new Date(year - 1900, month - 1, day, hour, min);
+                            @SuppressWarnings("deprecation")
+							Date thatdate = new Date(year - 1900, month - 1, day, hour, min);
                             Date nowdate = new Date();
 
                             long s1 = ((nowdate.getTime() - thatdate.getTime()) / 1000);

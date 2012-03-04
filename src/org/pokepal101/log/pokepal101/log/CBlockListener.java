@@ -2,15 +2,15 @@ package org.pokepal101.log.pokepal101.log;
 
 import java.util.*;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.Material;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
 
 /**
  * Sample block listener
  * @author Dinnerbone
  */
-public class CBlockListener extends BlockListener
+public class CBlockListener implements Listener
 {
     private final LogPlugin plugin;
 
@@ -18,7 +18,8 @@ public class CBlockListener extends BlockListener
     {
         this.plugin = plugin;
     }
-
+    
+    @EventHandler
     public void onBlockPlace (BlockPlaceEvent event)
     {
         Block b = event.getBlockPlaced();
@@ -37,7 +38,8 @@ public class CBlockListener extends BlockListener
 //        plugin.set(p, mod);
 		plugin.bw.write(p.getData() + ";" + m.getData());
     }
-
+    
+    @EventHandler
     public void onBlockBreak (BlockBreakEvent event)
     {
         Block b = event.getBlock();

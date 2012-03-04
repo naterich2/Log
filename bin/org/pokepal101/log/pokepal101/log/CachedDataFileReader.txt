@@ -1,0 +1,41 @@
+package org.pokepal101.log.pokepal101.log;
+
+import java.io.*;
+
+public class CachedDataFileReader
+{
+	private File dataFile;
+//	private String[] cache;
+//	private int index;
+	private BufferedReader rdr;
+
+	public CachedDataFileWriter (File dF)
+	{
+		dataFile = dF;
+//		cache = new String[5];
+//		index = 0;
+		reset ();
+	}
+
+	public String readLine ()
+	{
+		try
+		{
+			return rdr.readLine();
+		}
+		catch (IOException e)
+		{
+			throw new RuntimeException ("Log: Error reading data: " + e);
+		}
+		return null;
+	}
+
+	public void reset ()
+	{
+		rdr = new BufferedReader (new FileReader (dataFile));
+	}
+
+	public void close ()
+	{
+	}
+}
