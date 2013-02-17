@@ -1,6 +1,7 @@
 package org.pokepal101.log.pokepal101.log;
 
 import java.util.*;
+import java.text.*;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,12 +26,9 @@ public class CBlockListener implements Listener
         Block b = event.getBlockPlaced();
         Position p = new Position(b.getX(), b.getY(), b.getZ());
 //        ArrayList<Modification> mod = plugin.get(p);
-        Calendar c = Calendar.getInstance();
-        String date = c.get(Calendar.DAY_OF_MONTH) + "/";
-        date += (c.get(Calendar.MONTH) + 1) + "/";
-        date += c.get(Calendar.YEAR) + " ";
-        date += c.get(Calendar.HOUR_OF_DAY) + ":";
-        date += c.get(Calendar.MINUTE);
+        Date d = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat("dd MMM yyyy HH:mm")
+        String date =  ft.format(d);
         String idData = b.getTypeId() + "";
         if (b.getData() != 0) idData += ":" + b.getData();
         Modification m = new Modification(event.getPlayer().getName(), true, idData, date);
@@ -45,12 +43,9 @@ public class CBlockListener implements Listener
         Block b = event.getBlock();
         Position p = new Position(b.getX(), b.getY(), b.getZ());
 //        ArrayList<Modification> mod = plugin.get(p);
-        Calendar c = Calendar.getInstance();
-        String date = c.get(Calendar.DAY_OF_MONTH) + "/";
-        date += (c.get(Calendar.MONTH) + 1) + "/";
-        date += c.get(Calendar.YEAR) + " ";
-        date += c.get(Calendar.HOUR_OF_DAY) + ":";
-        date += c.get(Calendar.MINUTE);
+        Date d = new Date();
+        SimpleDateFormat ft = new SimplDateFormat("dd MMMMM yyyy HH:mm")
+        String date = ft.format(d);
         String idData = b.getTypeId() + "";
         if (b.getData() != 0) idData += ":" + b.getData();
         Modification m = new Modification(event.getPlayer().getName(), false, idData, date);
